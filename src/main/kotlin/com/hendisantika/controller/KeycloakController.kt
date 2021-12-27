@@ -25,4 +25,9 @@ class KeycloakController {
     fun getUserInfo(): ResponseEntity<String> =
         ResponseEntity.ok("User info")
 
+    @GetMapping("/example/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    fun getAdminInfo(): ResponseEntity<String> =
+        ResponseEntity.ok("User info")
+
 }
