@@ -1,11 +1,11 @@
 package com.hendisantika.config
 
-import org.keycloak.adapters.KeycloakConfigResolver
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Import
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -25,6 +25,7 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
  */
 @KeycloakConfiguration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@Import(KeycloakSpringBootConfigResolver::class)
 class WebSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
 
     @Autowired
@@ -39,10 +40,10 @@ class WebSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
         return NullAuthenticatedSessionStrategy()
     }
 
-    @Bean
-    fun keycloakConfigResolver(): KeycloakConfigResolver {
-        return KeycloakSpringBootConfigResolver()
-    }
+//    @Bean
+//    fun keycloakConfigResolver(): KeycloakConfigResolver {
+//        return KeycloakSpringBootConfigResolver()
+//    }
 
     override fun configure(http: HttpSecurity) {
         super.configure(http)
