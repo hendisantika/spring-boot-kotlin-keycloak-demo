@@ -1,5 +1,7 @@
 package com.hendisantika.config
 
+import org.keycloak.adapters.KeycloakConfigResolver
+import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,5 +36,10 @@ class WebSecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
     @Bean
     override fun sessionAuthenticationStrategy(): SessionAuthenticationStrategy {
         return NullAuthenticatedSessionStrategy()
+    }
+
+    @Bean
+    fun keycloakConfigResolver(): KeycloakConfigResolver {
+        return KeycloakSpringBootConfigResolver()
     }
 }
