@@ -30,4 +30,7 @@ class KeycloakController {
     fun getAdminInfo(): ResponseEntity<String> =
         ResponseEntity.ok("User info")
 
+    @GetMapping("/public/example")
+    fun getPublicInfo(): ResponseEntity<String> =
+        ResponseEntity.ok("Public info")
 }
